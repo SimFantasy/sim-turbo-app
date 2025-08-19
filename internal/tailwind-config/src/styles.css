@@ -1,0 +1,197 @@
+/**
+ * TailwindCSS 4 主样式文件
+ * 基于 sim-admin 的样式配置，适配 TailwindCSS 4 语法
+ */
+
+@import "tailwindcss";
+@import "./transitions.css";
+
+@plugin "tw-animate-css";
+
+/**
+ * 暗色模式变体定义
+ * 支持 .dark 类名切换暗色模式
+ */
+@variant dark (&:where(.dark, .dark *));
+
+/**
+ * 主题颜色系统
+ * 定义设计系统的颜色变量
+ */
+@theme {
+  /* 基础颜色 */
+  --color-background: var(--color-white);
+  --color-foreground: var(--color-slate-900);
+  
+  /* 卡片颜色 */
+  --color-card: var(--color-white);
+  --color-card-foreground: var(--color-slate-900);
+  
+  /* 弹出层颜色 */
+  --color-popover: var(--color-white);
+  --color-popover-foreground: var(--color-slate-900);
+  
+  /* 主色调 */
+  --color-primary: var(--color-slate-900);
+  --color-primary-foreground: var(--color-slate-50);
+  
+  /* 次要颜色 */
+  --color-secondary: var(--color-slate-100);
+  --color-secondary-foreground: var(--color-slate-900);
+  
+  /* 静音颜色 */
+  --color-muted: var(--color-slate-100);
+  --color-muted-foreground: var(--color-slate-500);
+  
+  /* 强调颜色 */
+  --color-accent: var(--color-slate-100);
+  --color-accent-foreground: var(--color-slate-900);
+  
+  /* 危险颜色 */
+  --color-destructive: var(--color-rose-500);
+  --color-destructive-foreground: var(--color-slate-50);
+  
+  /* 边框和输入框颜色 */
+  --color-border: var(--color-slate-200);
+  --color-input: var(--color-slate-200);
+  --color-ring: var(--color-slate-400);
+
+  /* 圆角系统 */
+  --radius: 0.5rem;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+/**
+ * 暗色模式主题
+ */
+@layer theme {
+  .dark {
+    --color-background: var(--color-zinc-950);
+    --color-foreground: var(--color-zinc-50);
+    --color-card: var(--color-zinc-950);
+    --color-card-foreground: var(--color-zinc-50);
+    --color-popover: var(--color-zinc-950);
+    --color-popover-foreground: var(--color-zinc-50);
+    --color-primary: var(--color-zinc-50);
+    --color-primary-foreground: var(--color-zinc-900);
+    --color-secondary: var(--color-zinc-800);
+    --color-secondary-foreground: var(--color-zinc-50);
+    --color-muted: var(--color-zinc-800);
+    --color-muted-foreground: var(--color-zinc-400);
+    --color-accent: var(--color-zinc-800);
+    --color-accent-foreground: var(--color-zinc-50);
+    --color-destructive: var(--color-rose-700);
+    --color-destructive-foreground: var(--color-zinc-50);
+    --color-border: var(--color-zinc-800);
+    --color-input: var(--color-zinc-800);
+    --color-ring: var(--color-zinc-300);
+  }
+}
+
+/**
+ * 自定义滚动条样式
+ */
+::-webkit-scrollbar {
+  @apply w-[6px];
+}
+::-webkit-scrollbar-track {
+  @apply !bg-emerald-500/10;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-emerald-500/80 rounded-sm hover:bg-emerald-500;
+}
+
+/**
+ * 基础样式层
+ */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-border);
+  }
+  
+  html { 
+    @apply scroll-smooth hover:scroll-auto; 
+  }
+  
+  body { 
+    @apply text-primary bg-slate-50 dark:bg-background; 
+  }
+}
+
+/**
+ * 组件样式层
+ */
+@layer components {
+  /* 页面布局组件 */
+  .page-wrapper { @apply grid grid-cols-24 gap-4;}
+  .page-container { @apply mx-auto px-4 max-w-7xl; }
+  
+  .page-main { @apply flex flex-col gap-4; }
+  
+  .page-block { @apply flex flex-col gap-y-4; }
+
+  /* Naive UI 标签页自定义样式 */
+  .sim-tabs {
+    @apply h-10;
+
+    & > .n-tabs-nav {
+      @apply mt-2;
+    }
+
+    .n-tabs-tab-pad {
+      @apply !border-b-0;
+    }
+
+    .sim-tabs-tab-item {
+      @apply !px-3 !py-1.5 !h-8 !bg-slate-500/0 !border-0 !border-b-[1px] !border-emerald-400/0 !rounded-sm !text-primary/50 trans-all hover:!bg-primary/5;
+
+      &.n-tabs-tab--active {
+        @apply !border-b-emerald-400 !bg-emerald-500/40 !rounded-b-none !text-emerald-600 dark:!bg-emerald-950;
+      }
+
+      .n-base-close {
+        @apply !size-3;
+      }
+    }
+  }
+}
+
+/**
+ * 工具类样式层
+ */
+@layer utilities {
+  /* 组件重置样式 */
+  .free-button { @apply !px-2; }
+
+  /* Flex 布局工具类 */
+  .flex-start { @apply flex items-center; }
+  .flex-center { @apply flex items-center justify-center; }
+  .flex-end { @apply flex items-center justify-end; }
+  .flex-x-1 {  @apply flex items-center gap-x-1; }
+  .flex-x-2 { @apply flex items-center gap-x-2; }
+  .flex-x-3 { @apply flex items-center gap-x-3; }
+  .flex-x-4 { @apply flex items-center gap-x-4; }
+  .flex-x-5 { @apply flex items-center gap-x-5; }
+  .flex-x-6 { @apply flex items-center gap-x-6; }
+  
+  .flex-y { @apply flex flex-col; }
+  .flex-y-1 { @apply flex flex-col gap-y-1; }
+  .flex-y-2 { @apply flex flex-col gap-y-2; }
+  .flex-y-3 { @apply flex flex-col gap-y-3; }
+  .flex-y-4 { @apply flex flex-col gap-y-4; }
+  .flex-y-5 { @apply flex flex-col gap-y-5; }
+  .flex-y-6 { @apply flex flex-col gap-y-6; }
+  .flex-y-8 { @apply flex flex-col gap-y-8; }
+  .flex-y-16 { @apply flex flex-col gap-y-16; }
+  .flex-y-24 { @apply flex flex-col gap-y-24; }
+
+  /* 过渡动画工具类 */
+  .trans-all { @apply transition-all duration-300 ease-linear; }
+  .trans-colors { @apply transition-colors duration-300 ease-linear; }
+  .trans-shadow { @apply transition-shadow duration-300 ease-linear; }
+  .trans-transform { @apply transition-transform duration-300 ease-linear; }
+}

@@ -1,0 +1,16 @@
+{
+	"name": "@sim/tailwind-config",
+	"type": "module",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Tailwind 4 公共配置包",
+	"exports": {
+		".": "./src/styles.css",
+		"./postcss": "./src/postcss.config.js"
+	},
+	"devDependencies": {
+		"postcss": "catalog:",
+		"tailwindcss": "catalog:",
+		"tw-animate-css": "catalog:"
+	}
+}

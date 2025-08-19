@@ -1,0 +1,22 @@
+{
+  "name": "@sim/typescript-config",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    "./base.json": "./base.json",
+    "./library.json": "./library.json",
+    "./node.json": "./node.json",
+    "./web-app.json": "./web-app.json",
+    "./web.json": "./web.json"
+  },
+  "files": [
+    "base.json",
+    "library.json",
+    "node.json",
+    "web-app.json",
+    "web.json"
+  ],
+  "dependencies": {
+    "vite": "catalog:"
+  }
+}
