@@ -23,102 +23,100 @@
  * ```
  */
 
-import type { Options } from "tsup";
+import type { Options } from 'tsup'
 
 /**
  * tsup 配置选项接口
  */
 export interface TsupConfigOptions {
   /**
-   * 入口文件
-   * @default ['src/index.ts']
+   * 额外的 tsup 选项
    */
-  entry?: string[] | Record<string, string>;
-
-  /**
-   * 输出格式
-   * @default ['cjs', 'esm']
-   */
-  format?: ("cjs" | "esm" | "iife")[];
-
-  /**
-   * 是否生成类型声明文件
-   * @default true
-   */
-  dts?: boolean;
+  additionalOptions?: Partial<Options>
 
   /**
    * 是否清理输出目录
    * @default true
    */
-  clean?: boolean;
+  clean?: boolean
+
+  /**
+   * 是否生成类型声明文件
+   * @default true
+   */
+  dts?: boolean
+
+  /**
+   * 入口文件
+   * @default ['src/index.ts']
+   */
+  entry?: Record<string, string> | string[]
 
   /**
    * 外部依赖
    * @default []
    */
-  external?: string[];
+  external?: string[]
 
   /**
-   * 是否启用代码分割
-   * @default false
+   * 输出格式
+   * @default ['cjs', 'esm']
    */
-  splitting?: boolean;
-
-  /**
-   * 是否生成 sourcemap
-   * @default true
-   */
-  sourcemap?: boolean;
+  format?: ('cjs' | 'esm' | 'iife')[]
 
   /**
    * 是否压缩代码
    * @default false
    */
-  minify?: boolean;
-
-  /**
-   * 目标环境
-   * @default 'node18'
-   */
-  target?: string;
+  minify?: boolean
 
   /**
    * 输出目录
    * @default 'dist'
    */
-  outDir?: string;
+  outDir?: string
+
+  /**
+   * 是否生成 sourcemap
+   * @default true
+   */
+  sourcemap?: boolean
+
+  /**
+   * 是否启用代码分割
+   * @default false
+   */
+  splitting?: boolean
+
+  /**
+   * 目标环境
+   * @default 'node18'
+   */
+  target?: string
 
   /**
    * 是否监听文件变化
    * @default false
    */
-  watch?: boolean;
-
-  /**
-   * 额外的 tsup 选项
-   */
-  additionalOptions?: Partial<Options>;
+  watch?: boolean
 }
 
 /**
  * 默认的 tsup 配置
  */
-export const defaultTsupConfig: Required<
-  Omit<TsupConfigOptions, "additionalOptions">
-> = {
-  entry: ["src/index.ts"],
-  format: ["cjs", "esm"],
+export const defaultTsupConfig: Required<Omit<TsupConfigOptions, 'additionalOptions'>> = {
+  entry: ['src/index.ts'],
+  format: ['cjs', 'esm'],
   dts: true,
   clean: true,
   external: [],
   splitting: false,
   sourcemap: true,
   minify: false,
-  target: "node18",
-  outDir: "dist",
-  watch: false,
-};
+  target: 'node18',
+  outDir: 'dist',
+  watch: false
+}
 
 /**
  * 创建 tsup 配置
@@ -153,8 +151,8 @@ export function createTsupConfig(options: TsupConfigOptions = {}): Options {
     target = defaultTsupConfig.target,
     outDir = defaultTsupConfig.outDir,
     watch = defaultTsupConfig.watch,
-    additionalOptions = {},
-  } = options;
+    additionalOptions = {}
+  } = options
 
   const config: Options = {
     entry,
@@ -168,10 +166,10 @@ export function createTsupConfig(options: TsupConfigOptions = {}): Options {
     target,
     outDir,
     watch,
-    ...additionalOptions,
-  };
+    ...additionalOptions
+  }
 
-  return config;
+  return config
 }
 
 /**
@@ -191,14 +189,14 @@ export function createTsupConfig(options: TsupConfigOptions = {}): Options {
  */
 export function createLibraryConfig(options: TsupConfigOptions = {}): Options {
   return createTsupConfig({
-    format: ["cjs", "esm"],
+    format: ['cjs', 'esm'],
     dts: true,
     clean: true,
     splitting: false,
     sourcemap: true,
     minify: false,
-    ...options,
-  });
+    ...options
+  })
 }
 
 /**
@@ -218,15 +216,15 @@ export function createLibraryConfig(options: TsupConfigOptions = {}): Options {
  */
 export function createCliConfig(options: TsupConfigOptions = {}): Options {
   return createTsupConfig({
-    format: ["esm"],
+    format: ['esm'],
     dts: false,
     clean: true,
     splitting: false,
     sourcemap: false,
     minify: true,
-    target: "node18",
-    ...options,
-  });
+    target: 'node18',
+    ...options
+  })
 }
 
 /**
@@ -246,15 +244,15 @@ export function createCliConfig(options: TsupConfigOptions = {}): Options {
  */
 export function createNodeConfig(options: TsupConfigOptions = {}): Options {
   return createTsupConfig({
-    format: ["cjs"],
+    format: ['cjs'],
     dts: false,
     clean: true,
     splitting: false,
     sourcemap: true,
     minify: false,
-    target: "node18",
-    ...options,
-  });
+    target: 'node18',
+    ...options
+  })
 }
 
 /**
@@ -277,8 +275,8 @@ export function createDevConfig(options: TsupConfigOptions = {}): Options {
     clean: false,
     minify: false,
     sourcemap: true,
-    ...options,
-  });
+    ...options
+  })
 }
 
 /**
@@ -300,13 +298,13 @@ export function createProdConfig(options: TsupConfigOptions = {}): Options {
     clean: true,
     minify: true,
     sourcemap: false,
-    ...options,
-  });
+    ...options
+  })
 }
 
 /**
  * 导出默认配置
  */
-export default createTsupConfig;
+export default createTsupConfig
 
 // TsupConfigOptions 接口已在上面导出

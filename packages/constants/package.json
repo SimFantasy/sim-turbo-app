@@ -25,7 +25,6 @@
 	"devDependencies": {
 		"@types/node": "catalog:",
 		"@sim/types": "workspace:*",
-		"@sim/utils": "workspace:*",
 		"@sim/typescript-config": "workspace:*",
 		"@sim/tsup-config": "workspace:*",
 		"eslint": "catalog:",

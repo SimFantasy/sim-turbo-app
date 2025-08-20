@@ -1,6 +1,8 @@
 import { createI18n } from 'vue-i18n'
 
-import { languageStorage, DEFAULT_CONFIG } from '@sim/constants'
+import { DEFAULT_CONFIG } from '@sim/constants'
+import { languageStorage } from '@sim/utils'
+
 import type { LanguageType } from '@sim/types'
 
 import { zhCN } from './lang/zh-cn'

@@ -21,10 +21,10 @@ import utc from 'dayjs/plugin/utc'
  * ```
  */
 export function getBuildTime(timeZone = 'Asia/Shanghai', format = 'YYYY-MM-DD HH:mm:ss'): string {
-	dayjs.extend(utc)
-	dayjs.extend(timezone)
+  dayjs.extend(utc)
+  dayjs.extend(timezone)
 
-	const buildTime = dayjs.tz(Date.now(), timeZone).format(format)
+  const buildTime = dayjs.tz(Date.now(), timeZone).format(format)
 
-	return buildTime
+  return buildTime
 }

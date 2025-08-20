@@ -15,6 +15,7 @@
 		"build:locales": "pnpm -F @sim/locales build",
 		"dev": "turbo dev",
 		"lint": "turbo lint",
+		"lint:fix": "turbo lint -- --fix",
 		"type-check": "turbo type-check",
 		"clean": "turbo clean",
 		"outdated": "pnpm outdated --recursive",
@@ -22,6 +23,7 @@
 	},
 	"devDependencies": {
 		"@sim/prettier-config": "workspace:*",
+		"@sim/eslint-config": "workspace:*",
 		"turbo": "catalog:",
 		"tsup": "catalog:"
 	},

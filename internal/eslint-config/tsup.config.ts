@@ -1,39 +1,28 @@
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-	// 入口文件
 	entry: ['src/index.ts'],
-
-	// 输出格式
-	format: ['esm', 'cjs'],
-
-	// 启用类型声明文件生成
+	// 只构建 ESM 格式
+	format: ['esm'],
 	dts: true,
-
-	// 清理输出目录
 	clean: true,
-
-	// 输出目录
 	outDir: 'dist',
-
-	// 分割代码块
-	splitting: true,
-
-	// 生成 sourcemap
+	splitting: false,
 	sourcemap: true,
-
-	// 不打包外部依赖
 	external: [
-		'eslint',
-		'@typescript-eslint/eslint-plugin',
-		'@typescript-eslint/parser',
-		/^eslint-plugin-/,
-		/^@eslint\//
+		// 外部化所有可能导致动态 require 的包
+		/^eslint/,
+		/^@eslint/,
+		/^@typescript-eslint/,
+		/.*-eslint-parser$/,  // 匹配所有 eslint parser
+		'vue-eslint-parser',
+		'jsonc-eslint-parser',
+		'eslint-config-turbo',  // 明确外部化 eslint-config-turbo
+		'globals',
+		'espree',
+		'acorn'
 	],
-
-	// 目标环境
 	target: 'node20',
-
-	// 不压缩代码
-	minify: true
+	minify: false,
+	platform: 'node'
 })

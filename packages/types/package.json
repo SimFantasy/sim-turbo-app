@@ -20,6 +20,9 @@
 		},
 		"./store": {
 			"types": "./src/store.d.ts"
+		},
+		"./vite": {
+			"types": "./src/vite.d.ts"
 		}
 	},
 	"devDependencies": {

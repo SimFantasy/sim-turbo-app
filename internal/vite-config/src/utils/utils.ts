@@ -3,9 +3,12 @@
  * 迁移自 sim-admin/build/utils.ts
  */
 
-import type { ViteEnv } from '../types'
+import type { ViteEnv } from '@sim/types'
+
 import fs from 'node:fs'
 import path from 'node:path'
+// 用于替代 __dirname
+
 import dotenv from 'dotenv'
 
 /**
@@ -15,7 +18,7 @@ import dotenv from 'dotenv'
  * @returns 是否为开发模式
  */
 export function isDevMode(mode: string): boolean {
-	return mode === 'development'
+  return mode === 'development'
 }
 
 /**
@@ -25,7 +28,7 @@ export function isDevMode(mode: string): boolean {
  * @returns 是否为生产模式
  */
 export function isProdMode(mode: string): boolean {
-	return mode === 'production'
+  return mode === 'production'
 }
 
 /**
@@ -34,7 +37,7 @@ export function isProdMode(mode: string): boolean {
  * @returns 是否为报告模式
  */
 export function isReportMode(): boolean {
-	return process.env['REPORT'] === 'true' // 使用方括号语法访问环境变量
+  return process.env.REPORT === 'true' // 使用方括号语法访问环境变量
 }
 
 /**
@@ -51,27 +54,27 @@ export function isReportMode(): boolean {
  * ```
  */
 export function wrapperEnv(envConf: Record<string, any>): ViteEnv {
-	const ret: any = {}
+  const ret: any = {}
 
-	for (const envName of Object.keys(envConf)) {
-		let realName = envConf[envName].replace(/\\n/g, '\n')
-		realName = realName === 'true' ? true : realName === 'false' ? false : realName
+  for (const envName of Object.keys(envConf)) {
+    let realName = envConf[envName].replaceAll(String.raw`\n`, '\n')
+    realName = realName === 'true' ? true : (realName === 'false' ? false : realName)
 
-		if (envName === 'VITE_PORT') {
-			realName = Number(realName)
-		}
-		if (envName === 'VITE_PROXY') {
-			try {
-				realName = JSON.parse(realName)
-			} catch (error) {
-				console.warn(`解析 VITE_PROXY 失败:`, error)
-				realName = []
-			}
-		}
-		ret[envName] = realName
-		process.env[envName] = realName
-	}
-	return ret
+    if (envName === 'VITE_PORT') {
+      realName = Number(realName)
+    }
+    if (envName === 'VITE_PROXY') {
+      try {
+        realName = JSON.parse(realName)
+      } catch (error) {
+        console.warn(`解析 VITE_PROXY 失败:`, error)
+        realName = []
+      }
+    }
+    ret[envName] = realName
+    process.env[envName] = realName
+  }
+  return ret
 }
 
 /**
@@ -87,24 +90,24 @@ export function wrapperEnv(envConf: Record<string, any>): ViteEnv {
  * ```
  */
 export function getEnvConfig(match = 'VITE_GLOB_', confFiles = ['.env', '.env.production']) {
-	let envConfig = {}
-	confFiles.forEach(item => {
-		try {
-			const env = dotenv.parse(fs.readFileSync(path.resolve(process.cwd(), item)))
-			envConfig = { ...envConfig, ...env }
-		} catch (error) {
-			// 文件不存在时忽略错误
-			console.log('error', error)
-		}
-	})
+  let envConfig = {}
+  confFiles.forEach(item => {
+    try {
+      const env = dotenv.parse(fs.readFileSync(path.resolve(process.cwd(), item)))
+      envConfig = { ...envConfig, ...env }
+    } catch (error) {
+      // 文件不存在时忽略错误
+      console.log('error', error)
+    }
+  })
 
-	Object.keys(envConfig).forEach(key => {
-		const reg = new RegExp(`^(${match})`)
-		if (!reg.test(key)) {
-			Reflect.deleteProperty(envConfig, key)
-		}
-	})
-	return envConfig
+  Object.keys(envConfig).forEach(key => {
+    const reg = new RegExp(`^(${match})`)
+    if (!reg.test(key)) {
+      Reflect.deleteProperty(envConfig, key)
+    }
+  })
+  return envConfig
 }
 
 /**
@@ -119,5 +122,16 @@ export function getEnvConfig(match = 'VITE_GLOB_', confFiles = ['.env', '.env.pr
  * ```
  */
 export function getRootPath(...dir: string[]) {
-	return path.resolve(process.cwd(), ...dir)
+  return path.resolve(process.cwd(), ...dir)
+}
+
+export function getProjectRoot(): string {
+  // 在构建工具环境中，__dirname 通常是可用的
+  if (typeof __dirname !== 'undefined') {
+    return __dirname
+  }
+
+  // 直接降级到当前工作目录
+  // 在大多数构建场景中这是可接受的
+  return process.cwd()
 }

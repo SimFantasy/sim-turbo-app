@@ -4,6 +4,7 @@
  */
 
 import type { Plugin } from 'vite'
+
 import compressPlugin from 'vite-plugin-compression'
 
 /**
@@ -20,37 +21,37 @@ import compressPlugin from 'vite-plugin-compression'
  * ```
  */
 export function configCompressPlugin(
-	compress: 'gzip' | 'brotli' | 'none' | string,
-	deleteOriginFile = false
+  compress: 'brotli' | 'gzip' | 'none' | string,
+  deleteOriginFile = false
 ): Plugin | Plugin[] {
-	const compressList = compress.split(',')
-	const plugins: Plugin[] = []
+  const compressList = compress.split(',')
+  const plugins: Plugin[] = []
 
-	if (compressList.includes('gzip')) {
-		plugins.push(
-			compressPlugin({
-				ext: '.gz',
-				deleteOriginFile,
-				algorithm: 'gzip'
-			})
-		)
-	}
+  if (compressList.includes('gzip')) {
+    plugins.push(
+      compressPlugin({
+        ext: '.gz',
+        deleteOriginFile,
+        algorithm: 'gzip'
+      })
+    )
+  }
 
-	if (compressList.includes('brotli')) {
-		plugins.push(
-			compressPlugin({
-				ext: '.br',
-				algorithm: 'brotliCompress',
-				deleteOriginFile
-			})
-		)
-	}
+  if (compressList.includes('brotli')) {
+    plugins.push(
+      compressPlugin({
+        ext: '.br',
+        algorithm: 'brotliCompress',
+        deleteOriginFile
+      })
+    )
+  }
 
-	// 类型安全的返回逻辑
-	if (plugins.length === 0) {
-		return []
-	}
+  // 类型安全的返回逻辑
+  if (plugins.length === 0) {
+    return []
+  }
 
-	// 使用非空断言，因为我们已经确认数组不为空
-	return plugins.length === 1 ? plugins[0]! : plugins
+  // 使用非空断言，因为我们已经确认数组不为空
+  return plugins.length === 1 ? plugins[0]! : plugins
 }

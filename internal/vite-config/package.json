@@ -1,62 +1,64 @@
 {
-	"name": "@sim/vite-config",
-	"type": "module",
-	"version": "0.0.1",
-	"description": "Vite 公共配置包",
-	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"import": "./dist/index.js"
-		},
-		"./base": {
-			"types": "./dist/base.d.ts",
-			"import": "./dist/base.js"
-		},
-		"./vue": {
-			"types": "./dist/vue.d.ts",
-			"import": "./dist/vue.js"
-		}
-	},
-	"main": "./dist/index.js",
-	"module": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"files": [
-		"dist"
-	],
-	"scripts": {
-		"build": "tsup",
-		"dev": "tsup --watch",
-		"lint": "eslint .",
-		"type-check": "tsc --noEmit"
-	},
-	"peerDependencies": {
-		"vite": ">=7.0.0"
-	},
-	"dependencies": {
-		"@iconify/vue": "catalog:",
-		"@tailwindcss/vite": "catalog:",
-		"@vitejs/plugin-vue": "catalog:",
-		"@vitejs/plugin-vue-jsx": "catalog:",
-		"dayjs": "catalog:",
-		"dotenv": "catalog:",
-		"naive-ui": "catalog:",
-		"unplugin-auto-import": "catalog:",
-		"unplugin-icons": "catalog:",
-		"unplugin-vue-components": "catalog:",
-		"vite": "catalog:",
-		"vite-plugin-compression": "catalog:",
-		"vite-plugin-image-optimizer": "catalog:",
-		"vite-plugin-mock": "catalog:",
-		"vite-plugin-progress": "catalog:",
-		"vite-plugin-vue-devtools": "catalog:",
-		"vite-plugin-vue-setup-extend": "catalog:",
-		"vite-svg-loader": "catalog:"
-	},
-	"devDependencies": {
-		"@sim/typescript-config": "workspace:*",
-		"@types/node": "catalog:",
-		"eslint": "catalog:",
-		"tsup": "catalog:",
-		"typescript": "catalog:"
-	}
+  "name": "@sim/vite-config",
+  "version": "0.0.1",
+  "description": "Vite 公共配置包",
+  "type": "module",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./base": {
+      "types": "./dist/base.d.ts",
+      "import": "./dist/base.js"
+    },
+    "./vue": {
+      "types": "./dist/vue.d.ts",
+      "import": "./dist/vue.js"
+    }
+  },
+  "peerDependencies": {
+    "vite": ">=7.0.0"
+  },
+  "dependencies": {
+    "@iconify/vue": "catalog:",
+    "@tailwindcss/vite": "catalog:",
+    "@vitejs/plugin-vue": "catalog:",
+    "@vitejs/plugin-vue-jsx": "catalog:",
+    "dayjs": "catalog:",
+    "dotenv": "catalog:",
+    "naive-ui": "catalog:",
+    "unplugin-auto-import": "catalog:",
+    "unplugin-icons": "catalog:",
+    "unplugin-vue-components": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-compression": "catalog:",
+    "vite-plugin-image-optimizer": "catalog:",
+    "vite-plugin-mock": "catalog:",
+    "vite-plugin-progress": "catalog:",
+    "vite-plugin-vue-devtools": "catalog:",
+    "vite-plugin-vue-setup-extend": "catalog:",
+    "vite-svg-loader": "catalog:"
+  },
+  "devDependencies": {
+    "@sim/eslint-config": "workspace:*",
+    "@sim/types": "workspace:*",
+    "@sim/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
+    "tsup": "catalog:",
+    "typescript": "catalog:"
+  }
 }

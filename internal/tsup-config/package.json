@@ -1,25 +1,25 @@
 {
   "name": "@sim/tsup-config",
-  "type": "module",
   "version": "1.0.0",
   "description": "tsup 公共构建配置包，供小型 TS 模块使用",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    }
-  },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "type": "module",
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
     "lint": "eslint .",
     "type-check": "tsc --noEmit"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
   },
   "peerDependencies": {
     "tsup": ">=8.0.0"
@@ -28,8 +28,9 @@
     "tsup": "catalog:"
   },
   "devDependencies": {
-    "@types/node": "catalog:",
+    "@sim/eslint-config": "workspace:*",
     "@sim/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
     "eslint": "catalog:",
     "typescript": "catalog:"
   }

@@ -1,34 +1,4 @@
-/**
- * Vite 配置相关类型定义
- */
-
-/**
- * 环境变量类型定义
- * 迁移自 sim-admin/src/types/global.d.ts
- * 用于 Vite 项目的环境变量配置
- */
-export interface ViteEnv {
-	/** 应用标题 */
-	VITE_APP_TITLE: string
-	/** API 地址 */
-	VITE_API_URL: string
-	/** 基础路径 */
-	VITE_BASE_PATH: string
-	/** 端口号 */
-	VITE_PORT: number
-	/** 代理配置 */
-	VITE_PROXY: [string, string][]
-	/** 是否使用 Mock */
-	VITE_USE_MOCK: boolean
-	/** 构建压缩类型 */
-	VITE_BUILD_COMPRESS: 'gzip' | 'brotli' | 'none'
-	/** 是否删除原文件 */
-	VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE: boolean
-	/** 是否移除 console */
-	VITE_DROP_CONSOLE: boolean
-	/** 路由加载模式 */
-	VITE_ROUTE_LOAD_MODE: 'dynamic' | 'static'
-}
+import type { ViteEnv } from './global'
 
 /**
  * 基础 Vite 配置选项

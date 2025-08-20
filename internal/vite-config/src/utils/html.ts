@@ -11,6 +11,8 @@ import type { Plugin } from 'vite'
  *
  * @param buildTime 构建时间
  * @param options 额外选项
+ * @param options.meta 元数据配置
+ * @param options.title 页面标题
  * @returns Vite 插件
  *
  * @example
@@ -22,42 +24,42 @@ import type { Plugin } from 'vite'
  * ```
  */
 export function setupHtmlPlugin(
-	buildTime: string,
-	options: {
-		title?: string
-		meta?: Record<string, string>
-	} = {}
+  buildTime: string,
+  options: {
+    meta?: Record<string, string>
+    title?: string
+  } = {}
 ): Plugin {
-	const { title, meta = {} } = options
+  const { title, meta = {} } = options
 
-	const plugin: Plugin = {
-		name: 'html-plugin',
-		apply: 'build',
-		transformIndexHtml(html) {
-			let transformedHtml = html
+  const plugin: Plugin = {
+    name: 'html-plugin',
+    apply: 'build',
+    transformIndexHtml(html) {
+      let transformedHtml = html
 
-			// 注入构建时间
-			transformedHtml = transformedHtml.replace(
-				'<head>',
-				`<head>\n    <meta name="buildTime" content="${buildTime}">`
-			)
+      // 注入构建时间
+      transformedHtml = transformedHtml.replace(
+        '<head>',
+        `<head>\n    <meta name="buildTime" content="${buildTime}">`
+      )
 
-			// 注入标题
-			if (title) {
-				transformedHtml = transformedHtml.replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
-			}
+      // 注入标题
+      if (title) {
+        transformedHtml = transformedHtml.replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
+      }
 
-			// 注入额外的 meta 标签
-			Object.entries(meta).forEach(([name, content]) => {
-				transformedHtml = transformedHtml.replace(
-					'<head>',
-					`<head>\n    <meta name="${name}" content="${content}">`
-				)
-			})
+      // 注入额外的 meta 标签
+      Object.entries(meta).forEach(([name, content]) => {
+        transformedHtml = transformedHtml.replace(
+          '<head>',
+          `<head>\n    <meta name="${name}" content="${content}">`
+        )
+      })
 
-			return transformedHtml
-		}
-	}
+      return transformedHtml
+    }
+  }
 
-	return plugin
+  return plugin
 }
