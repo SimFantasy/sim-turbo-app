@@ -1,0 +1,54 @@
+{
+	"name": "@sim/locales",
+	"version": "0.0.1",
+	"description": "多语言包，提供中、英文语言配置和Naive UI多语言支持",
+	"type": "module",
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./zhCN": {
+			"types": "./dist/zhCN/index.d.ts",
+			"import": "./dist/zhCN/index.js"
+		},
+		"./enUS": {
+			"types": "./dist/enUS/index.d.ts",
+			"import": "./dist/enUS/index.js"
+		},
+		"./naive": {
+			"types": "./dist/naive.d.ts",
+			"import": "./dist/naive.js"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsup",
+		"dev": "tsup --watch",
+		"lint": "eslint .",
+		"type-check": "tsc --noEmit"
+	},
+	"peerDependencies": {
+		"vue-i18n": ">=11.0.0",
+		"naive-ui": ">=2.20.0"
+	},
+	"dependencies": {
+		"vue-i18n": "catalog:",
+		"naive-ui": "catalog:",
+		"@sim/utils": "workspace:*",
+		"@sim/constants": "workspace:*"
+	},
+	"devDependencies": {
+		"@types/node": "catalog:",
+		"@sim/tsup-config": "workspace:*",
+		"@sim/typescript-config": "workspace:*",
+		"@sim/types": "workspace:*",
+		"eslint": "catalog:",
+		"typescript": "catalog:"
+	}
+}

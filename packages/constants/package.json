@@ -1,0 +1,34 @@
+{
+	"name": "@sim/constants",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "公共常量包",
+	"main": "./dist/index.js",
+	"module": "./dist/index.cjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs"
+		}
+	},
+	"scripts": {
+		"build": "tsup",
+		"dev": "tsup --watch",
+		"lint": "eslint .",
+		"type-check": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@types/node": "catalog:",
+		"@sim/types": "workspace:*",
+		"@sim/utils": "workspace:*",
+		"@sim/typescript-config": "workspace:*",
+		"@sim/tsup-config": "workspace:*",
+		"eslint": "catalog:",
+		"typescript": "catalog:"
+	}
+}

@@ -1,0 +1,59 @@
+{
+	"name": "@sim/utils",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "公共工具包",
+	"files": [
+		"dist"
+	],
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./storage": {
+			"types": "./dist/strorage.d.ts",
+			"import": "./dist/storage.js"
+		},
+		"./array-tree": {
+			"types": "./dist/array-tree.d.ts",
+			"import": "./dist/array-tree.js"
+		},
+		"./naive": {
+			"types": "./dist/naive.d.ts",
+			"import": "./dist/naive.js"
+		},
+		"./icon": {
+			"types": "./dist/icon.d.ts",
+			"import": "./dist/icon.js"
+		}
+	},
+	"scripts": {
+		"build": "tsup",
+		"dev": "tsup --watch",
+		"lint": "eslint .",
+		"type-check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@sim/types": "workspace:*",
+		"@sim/constants": "workspace:*",
+		"axios": "catalog:",
+		"qs": "catalog:",
+		"@iconify/vue": "catalog:",
+		"naive-ui": "catalog:",
+		"vue-router": "catalog:",
+		"es-toolkit": "catalog:",
+		"vue": "catalog:"
+	},
+	"devDependencies": {
+		"@types/node": "catalog:",
+		"@types/qs": "catalog:",
+		"@sim/typescript-config": "workspace:*",
+		"@sim/tsup-config": "workspace:*",
+		"eslint": "catalog:",
+		"typescript": "catalog:"
+	}
+}
