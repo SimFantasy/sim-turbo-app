@@ -1,4 +1,4 @@
-import type { Linter } from 'eslint';
+import type { Linter } from 'eslint'
 
 export async function ignores(): Promise<Linter.Config[]> {
   return [
@@ -45,8 +45,8 @@ export async function ignores(): Promise<Linter.Config[]> {
         '**/vite.config.mts.*',
         '**/*.sh',
         '**/*.ttf',
-        '**/*.woff',
-      ],
-    },
-  ];
+        '**/*.woff'
+      ]
+    }
+  ]
 }

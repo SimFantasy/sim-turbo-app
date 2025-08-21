@@ -1,11 +1,11 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@sim/typescript-config/node.json",
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"],
 
   "compilerOptions": {
-    "skipLibCheck": true,
-    "types": []
-  }
+    "types": [],
+    "skipLibCheck": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }

@@ -1,13 +1,13 @@
-import type { Linter } from 'eslint';
+import type { Linter } from 'eslint'
 
-import * as pluginImport from 'eslint-plugin-import-x';
+import * as pluginImport from 'eslint-plugin-import-x'
 
 export async function importPluginConfig(): Promise<Linter.Config[]> {
   return [
     {
       plugins: {
         // @ts-expect-error - This is a dynamic import
-        import: pluginImport,
+        import: pluginImport
       },
       rules: {
         'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
@@ -18,8 +18,8 @@ export async function importPluginConfig(): Promise<Linter.Config[]> {
         'import/no-named-default': 'error',
         'import/no-self-import': 'error',
         'import/no-unresolved': 'off',
-        'import/no-webpack-loader-syntax': 'error',
-      },
-    },
-  ];
+        'import/no-webpack-loader-syntax': 'error'
+      }
+    }
+  ]
 }

@@ -1,4 +1,4 @@
-import type { Linter } from 'eslint';
+import type { Linter } from 'eslint'
 
 import {
   command,
@@ -17,17 +17,13 @@ import {
   // turbo,
   typescript,
   unicorn,
-  vue,
-} from './configs';
-import { customConfig } from './custom-config';
+  vue
+} from './configs'
+import { customConfig } from './custom-config'
 
-type FlatConfig = Linter.Config;
+type FlatConfig = Linter.Config
 
-type FlatConfigPromise =
-  | FlatConfig
-  | FlatConfig[]
-  | Promise<FlatConfig>
-  | Promise<FlatConfig[]>;
+type FlatConfigPromise = FlatConfig | FlatConfig[] | Promise<FlatConfig> | Promise<FlatConfig[]>
 
 async function defineConfig(config: FlatConfig[] = []) {
   const configs: FlatConfigPromise[] = [
@@ -49,12 +45,12 @@ async function defineConfig(config: FlatConfig[] = []) {
     command(),
     // turbo(),
     ...customConfig,
-    ...config,
-  ];
+    ...config
+  ]
 
-    const resolved = await Promise.all(configs);
+  const resolved = await Promise.all(configs)
 
-  return resolved.flat();
+  return resolved.flat()
 }
 
-export { defineConfig };
+export { defineConfig }

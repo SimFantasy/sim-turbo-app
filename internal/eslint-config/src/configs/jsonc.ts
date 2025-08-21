@@ -1,21 +1,21 @@
-import type { Linter } from 'eslint';
+import type { Linter } from 'eslint'
 
-import { interopDefault } from '../util';
+import { interopDefault } from '../util'
 
 export async function jsonc(): Promise<Linter.Config[]> {
   const [pluginJsonc, parserJsonc] = await Promise.all([
     interopDefault(import('eslint-plugin-jsonc')),
-    interopDefault(import('jsonc-eslint-parser')),
-  ] as const);
+    interopDefault(import('jsonc-eslint-parser'))
+  ] as const)
 
   return [
     {
       files: ['**/*.json', '**/*.json5', '**/*.jsonc', '*.code-workspace'],
       languageOptions: {
-        parser: parserJsonc as any,
+        parser: parserJsonc as any
       },
       plugins: {
-        jsonc: pluginJsonc as any,
+        jsonc: pluginJsonc as any
       },
       rules: {
         'jsonc/no-bigint-literals': 'error',
@@ -43,12 +43,12 @@ export async function jsonc(): Promise<Linter.Config[]> {
         'jsonc/no-useless-escape': 'error',
         'jsonc/space-unary-ops': 'error',
         'jsonc/valid-json-number': 'error',
-        'jsonc/vue-custom-block/no-parsing-error': 'error',
-      },
+        'jsonc/vue-custom-block/no-parsing-error': 'error'
+      }
     },
     sortTsconfig(),
-    sortPackageJson(),
-  ];
+    sortPackageJson()
+  ]
 }
 
 function sortPackageJson(): Linter.Config {
@@ -59,8 +59,8 @@ function sortPackageJson(): Linter.Config {
         'error',
         {
           order: { type: 'asc' },
-          pathPattern: '^files$|^pnpm.neverBuiltDependencies$',
-        },
+          pathPattern: '^files$|^pnpm.neverBuiltDependencies$'
+        }
       ],
       'jsonc/sort-keys': [
         'error',
@@ -109,47 +109,36 @@ function sortPackageJson(): Linter.Config {
             'husky',
             'simple-git-hooks',
             'lint-staged',
-            'eslintConfig',
+            'eslintConfig'
           ],
-          pathPattern: '^$',
+          pathPattern: '^$'
         },
         {
           order: { type: 'asc' },
-          pathPattern: '^(?:dev|peer|optional|bundled)?[Dd]ependencies(Meta)?$',
+          pathPattern: '^(?:dev|peer|optional|bundled)?[Dd]ependencies(Meta)?$'
         },
         {
           order: { type: 'asc' },
-          pathPattern: '^(?:resolutions|overrides|pnpm.overrides)$',
+          pathPattern: '^(?:resolutions|overrides|pnpm.overrides)$'
         },
         {
           order: ['types', 'import', 'require', 'default'],
-          pathPattern: '^exports.*$',
-        },
-      ],
-    },
-  };
+          pathPattern: '^exports.*$'
+        }
+      ]
+    }
+  }
 }
 
 function sortTsconfig(): Linter.Config {
   return {
-    files: [
-      '**/tsconfig.json',
-      '**/tsconfig.*.json',
-      'internal/tsconfig/*.json',
-    ],
+    files: ['**/tsconfig.json', '**/tsconfig.*.json', 'internal/tsconfig/*.json'],
     rules: {
       'jsonc/sort-keys': [
         'error',
         {
-          order: [
-            'extends',
-            'compilerOptions',
-            'references',
-            'files',
-            'include',
-            'exclude',
-          ],
-          pathPattern: '^$',
+          order: ['extends', 'compilerOptions', 'references', 'files', 'include', 'exclude'],
+          pathPattern: '^$'
         },
         {
           order: [
@@ -248,11 +237,11 @@ function sortTsconfig(): Linter.Config {
             'verbatimModuleSyntax',
             /* Completeness */
             'skipDefaultLibCheck',
-            'skipLibCheck',
+            'skipLibCheck'
           ],
-          pathPattern: '^compilerOptions$',
-        },
-      ],
-    },
-  };
+          pathPattern: '^compilerOptions$'
+        }
+      ]
+    }
+  }
 }

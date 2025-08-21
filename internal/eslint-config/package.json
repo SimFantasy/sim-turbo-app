@@ -1,56 +1,56 @@
 {
-	"name": "@sim/eslint-config",
-	"version": "1.0.0",
-	"description": "ESLint 公共配置包，基于vben admin",
-	"private": true,
-	"type": "module",
-	"scripts": {
-		"build": "tsup",
-		"build:watch": "tsup --watch",
-		"lint": "eslint .",
-		"type-check": "tsc --noEmit"
-	},
-	"files": [
-		"dist"
-	],
-	"main": "./dist/index.js",
-	"module": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"import": "./dist/index.js"
-		}
-	},
-	"dependencies": {
-		"eslint-config-turbo": "catalog:",
-		"eslint-plugin-command": "catalog:",
-		"eslint-plugin-import-x": "catalog:"
-	},
-	"devDependencies": {
-		"@types/node": "catalog:",
-		"@eslint/js": "catalog:",
-		"@sim/typescript-config": "workspace:*",
-		"@types/eslint": "catalog:",
-		"@typescript-eslint/eslint-plugin": "catalog:",
-		"@typescript-eslint/parser": "catalog:",
-		"eslint": "catalog:",
-		"eslint-plugin-eslint-comments": "catalog:",
-		"eslint-plugin-jsdoc": "catalog:",
-		"eslint-plugin-jsonc": "catalog:",
-		"eslint-plugin-n": "catalog:",
-		"eslint-plugin-no-only-tests": "catalog:",
-		"eslint-plugin-perfectionist": "catalog:",
-		"eslint-plugin-prettier": "catalog:",
-		"eslint-plugin-regexp": "catalog:",
-		"eslint-plugin-unicorn": "catalog:",
-		"eslint-plugin-unused-imports": "catalog:",
-		"eslint-plugin-vitest": "catalog:",
-		"eslint-plugin-vue": "catalog:",
-		"globals": "catalog:",
-		"jsonc-eslint-parser": "catalog:",
-		"vue-eslint-parser": "catalog:",
-		"tsup": "catalog:",
-		"typescript": "catalog:"
-	}
+  "name": "@sim/eslint-config",
+  "version": "1.0.0",
+  "description": "ESLint 公共配置包，基于vben admin",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsup",
+    "build:watch": "tsup --watch",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "eslint-config-turbo": "catalog:",
+    "eslint-plugin-command": "catalog:",
+    "eslint-plugin-import-x": "catalog:"
+  },
+  "devDependencies": {
+    "@eslint/js": "catalog:",
+    "@sim/typescript-config": "workspace:*",
+    "@types/eslint": "catalog:",
+    "@types/node": "catalog:",
+    "@typescript-eslint/eslint-plugin": "catalog:",
+    "@typescript-eslint/parser": "catalog:",
+    "eslint": "catalog:",
+    "eslint-plugin-eslint-comments": "catalog:",
+    "eslint-plugin-jsdoc": "catalog:",
+    "eslint-plugin-jsonc": "catalog:",
+    "eslint-plugin-n": "catalog:",
+    "eslint-plugin-no-only-tests": "catalog:",
+    "eslint-plugin-perfectionist": "catalog:",
+    "eslint-plugin-prettier": "catalog:",
+    "eslint-plugin-regexp": "catalog:",
+    "eslint-plugin-unicorn": "catalog:",
+    "eslint-plugin-unused-imports": "catalog:",
+    "eslint-plugin-vitest": "catalog:",
+    "eslint-plugin-vue": "catalog:",
+    "globals": "catalog:",
+    "jsonc-eslint-parser": "catalog:",
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vue-eslint-parser": "catalog:"
+  }
 }

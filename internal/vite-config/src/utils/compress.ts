@@ -13,7 +13,7 @@ import compressPlugin from 'vite-plugin-compression'
  *
  * @param compress 压缩类型
  * @param deleteOriginFile 是否删除原文件
- * @returns Vite 插件数组
+ * @returns Vite 插件数组（可能为空数组）
  *
  * @example
  * ```typescript
@@ -23,35 +23,34 @@ import compressPlugin from 'vite-plugin-compression'
 export function configCompressPlugin(
   compress: 'brotli' | 'gzip' | 'none' | string,
   deleteOriginFile = false
-): Plugin | Plugin[] {
+): Plugin[] {
   const compressList = compress.split(',')
   const plugins: Plugin[] = []
 
   if (compressList.includes('gzip')) {
-    plugins.push(
-      compressPlugin({
-        ext: '.gz',
-        deleteOriginFile,
-        algorithm: 'gzip'
-      })
-    )
+    const gzipPlugin = compressPlugin({
+      ext: '.gz',
+      deleteOriginFile,
+      algorithm: 'gzip'
+    })
+    // 确保插件存在后再添加
+    if (gzipPlugin) {
+      plugins.push(gzipPlugin)
+    }
   }
 
   if (compressList.includes('brotli')) {
-    plugins.push(
-      compressPlugin({
-        ext: '.br',
-        algorithm: 'brotliCompress',
-        deleteOriginFile
-      })
-    )
+    const brotliPlugin = compressPlugin({
+      ext: '.br',
+      algorithm: 'brotliCompress',
+      deleteOriginFile
+    })
+    // 确保插件存在后再添加
+    if (brotliPlugin) {
+      plugins.push(brotliPlugin)
+    }
   }
 
-  // 类型安全的返回逻辑
-  if (plugins.length === 0) {
-    return []
-  }
-
-  // 使用非空断言，因为我们已经确认数组不为空
-  return plugins.length === 1 ? plugins[0]! : plugins
+  // 始终返回插件数组，确保类型安全
+  return plugins
 }

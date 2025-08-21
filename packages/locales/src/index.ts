@@ -1,12 +1,12 @@
+import type { LanguageType } from '@sim/types'
+
 import { createI18n } from 'vue-i18n'
 
 import { DEFAULT_CONFIG } from '@sim/constants'
 import { languageStorage } from '@sim/utils'
 
-import type { LanguageType } from '@sim/types'
-
-import { zhCN } from './lang/zh-cn'
 import { enUS } from './lang/en-us'
+import { zhCN } from './lang/zh-cn'
 
 /**
  * 创建 i18n 实例
@@ -22,22 +22,22 @@ import { enUS } from './lang/en-us'
  * ```
  */
 export function createI18nInstance(
-	defaultLanguage: LanguageType = languageStorage.getItem() || DEFAULT_CONFIG.LANGUAGE,
-	currentLanguage: LanguageType = DEFAULT_CONFIG.LANGUAGE
+  defaultLanguage: LanguageType = languageStorage.getItem() || DEFAULT_CONFIG.LANGUAGE,
+  currentLanguage: LanguageType = DEFAULT_CONFIG.LANGUAGE
 ) {
-	const instance = createI18n({
-		legacy: false,
-		locale: currentLanguage || defaultLanguage,
-		fallbackLocale: defaultLanguage,
-		messages: {
-			zhCN,
-			enUS
-		},
-		// missingWarn: false, // 缺失国际化警告
-		fallbackWarn: false // 缺失回退内容警告
-	})
+  const instance = createI18n({
+    legacy: false,
+    locale: currentLanguage || defaultLanguage,
+    fallbackLocale: defaultLanguage,
+    messages: {
+      zhCN,
+      enUS
+    },
+    // missingWarn: false, // 缺失国际化警告
+    fallbackWarn: false // 缺失回退内容警告
+  })
 
-	return instance
+  return instance
 }
 
 /**
@@ -53,13 +53,13 @@ export function createI18nInstance(
  * ```
  */
 export function setLocale(locale: LanguageType, i18nInstance: any) {
-	if (i18nInstance && i18nInstance.global) {
-		i18nInstance.global.locale.value = locale
-	}
+  if (i18nInstance && i18nInstance.global) {
+    i18nInstance.global.locale.value = locale
+  }
 }
 
 // 导出语言包
-export { zhCN, enUS }
+export { enUS, zhCN }
 
 // 导出 Naive UI 多语言配置
 export { naiveI18nOptions } from './naive'

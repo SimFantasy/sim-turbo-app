@@ -1,14 +1,14 @@
-import type { Linter } from 'eslint';
+import type { Linter } from 'eslint'
 
-import { interopDefault } from '../util';
+import { interopDefault } from '../util'
 
 export async function node(): Promise<Linter.Config[]> {
-  const pluginNode = await interopDefault(import('eslint-plugin-n'));
+  const pluginNode = await interopDefault(import('eslint-plugin-n'))
 
   return [
     {
       plugins: {
-        n: pluginNode,
+        n: pluginNode
       },
       rules: {
         'n/handle-callback-err': ['error', '^(err|error)$'],
@@ -24,9 +24,9 @@ export async function node(): Promise<Linter.Config[]> {
               'vite',
               '@vue/test-utils',
               '@vben/tailwind-config',
-              '@playwright/test',
-            ],
-          },
+              '@playwright/test'
+            ]
+          }
         ],
         'n/no-new-require': 'error',
         'n/no-path-concat': 'error',
@@ -35,23 +35,20 @@ export async function node(): Promise<Linter.Config[]> {
           'error',
           {
             ignores: [],
-            version: '>=18.0.0',
-          },
+            version: '>=18.0.0'
+          }
         ],
         'n/prefer-global/buffer': ['error', 'never'],
         // 'n/no-missing-import': 'off',
         'n/prefer-global/process': ['error', 'never'],
-        'n/process-exit-as-throw': 'error',
-      },
+        'n/process-exit-as-throw': 'error'
+      }
     },
     {
-      files: [
-        'scripts/**/*.?([cm])[jt]s?(x)',
-        'internal/**/*.?([cm])[jt]s?(x)',
-      ],
+      files: ['scripts/**/*.?([cm])[jt]s?(x)', 'internal/**/*.?([cm])[jt]s?(x)'],
       rules: {
-        'n/prefer-global/process': 'off',
-      },
-    },
-  ];
+        'n/prefer-global/process': 'off'
+      }
+    }
+  ]
 }

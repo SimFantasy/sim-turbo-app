@@ -1,4 +1,5 @@
 export * from './array-tree'
 export * from './icon'
 export * from './naive'
+export * from './router'
 export * from './storage'

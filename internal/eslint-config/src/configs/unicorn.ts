@@ -1,16 +1,16 @@
-import type { Linter } from 'eslint';
+import type { Linter } from 'eslint'
 
-import { interopDefault } from '../util';
+import { interopDefault } from '../util'
 
 export async function unicorn(): Promise<Linter.Config[]> {
   const [pluginUnicorn] = await Promise.all([
-    interopDefault(import('eslint-plugin-unicorn')),
-  ] as const);
+    interopDefault(import('eslint-plugin-unicorn'))
+  ] as const)
 
   return [
     {
       plugins: {
-        unicorn: pluginUnicorn,
+        unicorn: pluginUnicorn
       },
       rules: {
         ...pluginUnicorn.configs.recommended.rules,
@@ -29,17 +29,14 @@ export async function unicorn(): Promise<Linter.Config[]> {
         'unicorn/prefer-export-from': ['error', { ignoreUsedVariables: true }],
         'unicorn/prefer-global-this': 'off',
         'unicorn/prefer-top-level-await': 'off',
-        'unicorn/prevent-abbreviations': 'off',
-      },
+        'unicorn/prevent-abbreviations': 'off'
+      }
     },
     {
-      files: [
-        'scripts/**/*.?([cm])[jt]s?(x)',
-        'internal/**/*.?([cm])[jt]s?(x)',
-      ],
+      files: ['scripts/**/*.?([cm])[jt]s?(x)', 'internal/**/*.?([cm])[jt]s?(x)'],
       rules: {
-        'unicorn/no-process-exit': 'off',
-      },
-    },
-  ];
+        'unicorn/no-process-exit': 'off'
+      }
+    }
+  ]
 }

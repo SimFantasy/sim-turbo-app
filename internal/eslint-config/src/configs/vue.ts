@@ -1,19 +1,18 @@
-import type { Linter } from 'eslint';
+import type { Linter } from 'eslint'
 
-import { interopDefault } from '../util';
+import { interopDefault } from '../util'
 
 export async function vue(): Promise<Linter.Config[]> {
   const [pluginVue, parserVue, parserTs] = await Promise.all([
     interopDefault(import('eslint-plugin-vue')),
     interopDefault(import('vue-eslint-parser')),
     // @ts-expect-error missing types
-    interopDefault(import('@typescript-eslint/parser')),
-  ] as const);
+    interopDefault(import('@typescript-eslint/parser'))
+  ] as const)
 
-  const flatEssential = pluginVue.configs?.['flat/essential'] || [];
-  const flatStronglyRecommended =
-    pluginVue.configs?.['flat/strongly-recommended'] || [];
-  const flatRecommended = pluginVue.configs?.['flat/recommended'] || [];
+  const flatEssential = pluginVue.configs?.['flat/essential'] || []
+  const flatStronglyRecommended = pluginVue.configs?.['flat/strongly-recommended'] || []
+  const flatRecommended = pluginVue.configs?.['flat/recommended'] || []
 
   return [
     ...flatEssential,
@@ -41,15 +40,15 @@ export async function vue(): Promise<Linter.Config[]> {
         parser: parserVue,
         parserOptions: {
           ecmaFeatures: {
-            jsx: true,
+            jsx: true
           },
           extraFileExtensions: ['.vue'],
           parser: parserTs,
-          sourceType: 'module',
-        },
+          sourceType: 'module'
+        }
       },
       plugins: {
-        vue: pluginVue,
+        vue: pluginVue
       },
       processor: pluginVue.processors?.['.vue'],
       rules: {
@@ -59,15 +58,15 @@ export async function vue(): Promise<Linter.Config[]> {
           'error',
           'always',
           {
-            ignore: [],
-          },
+            ignore: []
+          }
         ],
         'vue/attributes-order': 'off',
         'vue/block-order': [
           'error',
           {
-            order: ['script', 'template', 'style'],
-          },
+            order: ['script', 'template', 'style']
+          }
         ],
         'vue/component-name-in-template-casing': ['error', 'PascalCase'],
         'vue/component-options-name-casing': ['error', 'PascalCase'],
@@ -75,13 +74,8 @@ export async function vue(): Promise<Linter.Config[]> {
         'vue/define-macros-order': [
           'error',
           {
-            order: [
-              'defineOptions',
-              'defineProps',
-              'defineEmits',
-              'defineSlots',
-            ],
-          },
+            order: ['defineOptions', 'defineProps', 'defineEmits', 'defineSlots']
+          }
         ],
         'vue/dot-location': ['error', 'property'],
         'vue/dot-notation': ['error', { allowKeywords: true }],
@@ -96,11 +90,11 @@ export async function vue(): Promise<Linter.Config[]> {
             html: {
               component: 'always',
               normal: 'never',
-              void: 'always',
+              void: 'always'
             },
             math: 'always',
-            svg: 'always',
-          },
+            svg: 'always'
+          }
         ],
         'vue/max-attributes-per-line': 'off',
         'vue/multi-word-component-names': 'off',
@@ -114,7 +108,7 @@ export async function vue(): Promise<Linter.Config[]> {
           'error',
           'DebuggerStatement',
           'LabeledStatement',
-          'WithStatement',
+          'WithStatement'
         ],
         'vue/no-restricted-v-bind': ['error', '/^v-/'],
         'vue/no-sparse-arrays': 'error',
@@ -125,8 +119,8 @@ export async function vue(): Promise<Linter.Config[]> {
           'always',
           {
             avoidQuotes: true,
-            ignoreConstructors: false,
-          },
+            ignoreConstructors: false
+          }
         ],
         'vue/one-component-per-file': 'error',
         'vue/prefer-import-from-vue': 'error',
@@ -144,10 +138,10 @@ export async function vue(): Promise<Linter.Config[]> {
           'always',
           {
             autofix: true,
-            ignore: [],
-          },
-        ],
-      },
-    },
-  ];
+            ignore: []
+          }
+        ]
+      }
+    }
+  ]
 }

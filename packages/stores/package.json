@@ -1,0 +1,61 @@
+{
+  "name": "@sim/stores",
+  "version": "0.0.1",
+  "description": "公共状态管理包，基于pinia实现",
+  "type": "module",
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --watch",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./app": {
+      "types": "./dist/app.d.ts",
+      "import": "./dist/app.js"
+    },
+    "./auth": {
+      "types": "./dist/auth.d.ts",
+      "import": "./dist/auth.js"
+    },
+    "./router": {
+      "types": "./dist/router.d.ts",
+      "import": "./dist/router.js"
+    },
+    "./tab": {
+      "types": "./dist/tab.d.ts",
+      "import": "./dist/tab.js"
+    }
+  },
+  "dependencies": {
+    "@sim/constants": "workspace:*",
+    "@sim/locales": "workspace:*",
+    "@sim/utils": "workspace:*",
+    "@vueuse/core": "catalog:",
+    "colord": "catalog:",
+    "es-toolkit": "catalog:",
+    "pinia": "catalog:",
+    "pinia-plugin-persistedstate": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:"
+  },
+  "devDependencies": {
+    "@sim/eslint-config": "workspace:*",
+    "@sim/types": "workspace:*",
+    "@sim/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
+    "typescript": "catalog:",
+    "unbuild": "catalog:"
+  }
+}

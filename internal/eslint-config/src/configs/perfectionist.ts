@@ -1,12 +1,12 @@
-import type { Linter } from 'eslint';
+import type { Linter } from 'eslint'
 
-import { interopDefault } from '../util';
+import { interopDefault } from '../util'
 
 export async function perfectionist(): Promise<Linter.Config[]> {
   const perfectionistPlugin = await interopDefault(
     // @ts-expect-error - no types
-    import('eslint-plugin-perfectionist'),
-  );
+    import('eslint-plugin-perfectionist')
+  )
 
   return [
     perfectionistPlugin.configs['recommended-natural'],
@@ -16,8 +16,8 @@ export async function perfectionist(): Promise<Linter.Config[]> {
           'error',
           {
             order: 'asc',
-            type: 'natural',
-          },
+            type: 'natural'
+          }
         ],
         'perfectionist/sort-imports': [
           'error',
@@ -26,13 +26,13 @@ export async function perfectionist(): Promise<Linter.Config[]> {
               type: {
                 'vben-core-type': ['^@vben-core/.+'],
                 'vben-type': ['^@vben/.+'],
-                'vue-type': ['^vue$', '^vue-.+', '^@vue/.+'],
+                'vue-type': ['^vue$', '^vue-.+', '^@vue/.+']
               },
               value: {
                 vben: ['^@vben/.+'],
                 'vben-core': ['^@vben-core/.+'],
-                vue: ['^vue$', '^vue-.+', '^@vue/.+'],
-              },
+                vue: ['^vue$', '^vue-.+', '^@vue/.+']
+              }
             },
             environment: 'node',
             groups: [
@@ -53,21 +53,21 @@ export async function perfectionist(): Promise<Linter.Config[]> {
               'side-effect-style',
               'style',
               'object',
-              'unknown',
+              'unknown'
             ],
             internalPattern: ['^#/.+'],
             newlinesBetween: 'always',
             order: 'asc',
-            type: 'natural',
-          },
+            type: 'natural'
+          }
         ],
         'perfectionist/sort-modules': 'off',
         'perfectionist/sort-named-exports': [
           'error',
           {
             order: 'asc',
-            type: 'natural',
-          },
+            type: 'natural'
+          }
         ],
         'perfectionist/sort-objects': [
           'off',
@@ -75,15 +75,15 @@ export async function perfectionist(): Promise<Linter.Config[]> {
             customGroups: {
               items: 'items',
               list: 'list',
-              children: 'children',
+              children: 'children'
             },
             groups: ['unknown', 'items', 'list', 'children'],
             ignorePattern: ['children'],
             order: 'asc',
-            type: 'natural',
-          },
-        ],
-      },
-    },
-  ];
+            type: 'natural'
+          }
+        ]
+      }
+    }
+  ]
 }

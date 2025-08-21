@@ -1,34 +1,42 @@
 {
-	"name": "sim-turbo-app",
-	"version": "1.0.0",
-	"description": "基于Turborepo的Vue管理系统",
-	"private": true,
-	"type": "module",
-	"packageManager": "pnpm@10.14.0",
-	"scripts": {
-		"build": "turbo build",
-		"build:eslint": "pnpm -F @sim/eslint-config build",
-		"build:vite": "pnpm -F @sim/vite-config build",
-		"build:tsup": "pnpm -F @sim/tsup-config build",
-		"build:const": "pnpm -F @sim/constants build",
-		"build:utils": "pnpm -F @sim/utils build",
-		"build:locales": "pnpm -F @sim/locales build",
-		"dev": "turbo dev",
-		"lint": "turbo lint",
-		"lint:fix": "turbo lint -- --fix",
-		"type-check": "turbo type-check",
-		"clean": "turbo clean",
-		"outdated": "pnpm outdated --recursive",
-		"format": "prettier --write ."
-	},
-	"devDependencies": {
-		"@sim/prettier-config": "workspace:*",
-		"@sim/eslint-config": "workspace:*",
-		"turbo": "catalog:",
-		"tsup": "catalog:"
-	},
-	"engines": {
-		"node": ">=20.0.0",
-		"pnpm": ">=10.0.0"
-	}
+  "name": "sim-turbo-app",
+  "version": "1.0.0",
+  "description": "基于Turborepo的Vue管理系统",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.14.0",
+  "scripts": {
+    "build": "turbo build",
+    "build:eslint": "pnpm -F @sim/eslint-config build",
+    "build:vite": "pnpm -F @sim/vite-config build",
+    "build:tsup": "pnpm -F @sim/tsup-config build",
+    "build:const": "pnpm -F @sim/constants build",
+    "build:utils": "pnpm -F @sim/utils build",
+    "build:locales": "pnpm -F @sim/locales build",
+    "build:types": "pnpm -F @sim/types build",
+    "build:stores": "pnpm -F @sim/stores build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "lint:vite": "pnpm -F @sim/vite-config lint",
+    "lint:tsup": "pnpm -F @sim/tsup-config lint",
+    "lint:utils": "pnpm -F @sim/utils lint",
+    "lint:locales": "pnpm -F @sim/locales lint",
+    "lint:stores": "pnpm -F @sim/stores lint",
+    "lint:types": "pnpm -F @sim/types lint",
+    "lint:fix": "turbo lint -- --fix",
+    "type-check": "turbo type-check",
+    "clean": "turbo clean",
+    "outdated": "pnpm outdated --recursive",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@sim/prettier-config": "workspace:*",
+    "@sim/eslint-config": "workspace:*",
+    "turbo": "catalog:",
+    "tsup": "catalog:"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=10.0.0"
+  }
 }

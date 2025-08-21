@@ -139,25 +139,14 @@ export function createVitePlugins(
     )
   }
 
-  // 图标
+  // 批量添加插件：图标、SVG加载器、构建进度、图片优化
   vitePlugins.push(
+    // 图标
     Icons({
       compiler: 'vue3',
       autoInstall: true,
       scale: 1
-    })
-  )
-
-  // // SVG 加载器
-  // vitePlugins.push(svgLoader())
-
-  // // 构建进度
-  // vitePlugins.push(progress())
-
-  // // 图片优化
-  // vitePlugins.push(ViteImageOptimizer())
-  // 使用数组展开替代多次 push 调用
-  vitePlugins.push(
+    }),
     // SVG 加载器
     svgLoader(),
     // 构建进度
